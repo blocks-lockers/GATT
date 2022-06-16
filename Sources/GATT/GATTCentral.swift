@@ -75,7 +75,7 @@ public final class GATTCentral <HostController: BluetoothHostControllerInterface
         // log
         self.log?("[\(scanData.peripheral)]: Open connection (\(report.addressType))")
         // load cache device address
-        let localAddress = try await storage.readAddress(hostController)
+        let localAddress = scanData.peripheral.id
         // open socket
         let socket = try await Socket.lowEnergyClient(
             address: localAddress,
