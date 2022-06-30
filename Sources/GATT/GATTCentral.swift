@@ -145,6 +145,17 @@ public final class GATTCentral <HostController: BluetoothHostControllerInterface
         }
     }
     
+    public func isConnected(to peripheral: Peripheral) -> Bool {
+        
+        guard let _ = scanData[peripheral]
+            else { return false }
+        
+        guard connections[peripheral] != nil
+            else { return false }
+        
+        return true
+    }
+    
     public func discoverServices(_ services: [BluetoothUUID] = [],
                                  for peripheral: Peripheral,
                                  timeout: TimeInterval = .gattDefaultTimeout) throws -> [Service<Peripheral>] {
